@@ -9,7 +9,7 @@ export default function Layout({children}){
     const Layout = styled.div`
         display: grid;
         grid-template-columns: 1fr 4fr;
-        grid-template-rows: 1fr 3fr 1fr;
+        grid-template-rows: 1fr 6fr 1fr;
         max-width: 95%;
         margin-left: auto;
         margin-right: auto;
@@ -17,6 +17,8 @@ export default function Layout({children}){
 
     const Main = styled.main`
         padding: 25px;
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 1;
     `;
 
     return (

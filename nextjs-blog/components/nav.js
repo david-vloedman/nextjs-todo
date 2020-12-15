@@ -27,7 +27,7 @@ export default function Nav(){
             </li>
             <li>
                 <Link href="/posts/about">
-                    <a></a>
+                    <a>About</a>
                 </Link>
             </li>
         </UL>

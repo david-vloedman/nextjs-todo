@@ -4,7 +4,7 @@ export default function Header(){
 
     const Header = styled.header`
         grid-row: 1 / span 1;
-        grid-column: 1 / span 3;
+        grid-column: 2 / span 1;
     `;
 
     const Container = styled.div`
