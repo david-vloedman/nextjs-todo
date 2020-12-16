@@ -3,8 +3,6 @@ import Layout from '../../components/layout'
 
 export default function About(){
 
-   
-
     const PhotoContainer = styled.div`
         width: 8rem;
         height: 8rem;
@@ -13,8 +11,9 @@ export default function About(){
 
     const Photo = styled.img`
         border-radius: 9999px;
-        width: 8rem;
-        height: 8rem;
+        width: 150px;
+        height: 150px;
+        border: 2px dotted #72893F;
     `;
 
     const Heading = styled.div`

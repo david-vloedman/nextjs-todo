@@ -30,6 +30,12 @@ export default function Nav(){
                     <a>About</a>
                 </Link>
             </li>
+
+            <li>
+                <Link href="/posts/todo">
+                    <a>To Do App</a>
+                </Link>
+            </li>
         </UL>
     </Nav>
 }

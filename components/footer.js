@@ -11,17 +11,21 @@ export default function Footer(){
         display: flex;
         justify-content: center;
         align-items: flex-end;
+        margin-top: 10px;
     `;
 
     const Container = styled.div`
-
+        margin-top: 10px;
+        border-top: 1px solid #333;
     `;
 
     return <Footer>
+        
         This is just a study into an interesting technology stack.
         {' '}
         <Link href="mailto:djvloedman@gmail.com">
             <a>Contact Me</a>
         </Link>
+        
     </Footer>
 }
