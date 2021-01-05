@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 This is a simple Nextjs powered application made for educational purposes.
 
 ## Deployment
-[Netlify TestBlog](https://quizzical-williams-83986b.netlify.app/posts/about)
+[Netlify TestBlog](https://nextjs-playground.netlify.app/)
 
 ## Getting Started
 
