@@ -5,9 +5,6 @@ import Footer from '../components/footer'
 import Nav from '../components/nav'
 
 export default function Layout({children}){
-
-
-
     return (
         <LayoutStyle>
             <Head>
@@ -36,7 +33,7 @@ const LayoutStyle = styled.div`
 `;
 
 const MainStyle = styled.main`
-padding: 25px;
-grid-row: 2 / span 1;
-grid-column: 2 / span 1;
+    padding: 25px;
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 1;
 `;

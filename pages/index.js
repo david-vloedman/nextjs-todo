@@ -12,7 +12,8 @@ export async function getStaticProps(){
 }
 
 export default function Home({ allPostsData }) {
-  return <Layout>
+  return (
+  <Layout>
       <section>
         <h2>Pre-rendered Blog Posts</h2>
         <ul>
@@ -28,4 +29,5 @@ export default function Home({ allPostsData }) {
         </ul>
       </section>
     </Layout>    
+  )
 }
