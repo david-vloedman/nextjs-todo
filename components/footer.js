@@ -2,8 +2,18 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 export default function Footer(){
+    return <FooterStyle>
+        
+        This is just a study into an interesting technology stack.
+        {' '}
+        <Link href="mailto:djvloedman@gmail.com">
+            <a>Contact Me</a>
+        </Link>
+        
+    </FooterStyle>
+}
 
-    const Footer = styled.footer`
+const FooterStyle = styled.footer`
         font-size: .7rem;
         text-align: center;
         grid-column: 1 / span 3;
@@ -18,14 +28,3 @@ export default function Footer(){
         margin-top: 10px;
         border-top: 1px solid #333;
     `;
-
-    return <Footer>
-        
-        This is just a study into an interesting technology stack.
-        {' '}
-        <Link href="mailto:djvloedman@gmail.com">
-            <a>Contact Me</a>
-        </Link>
-        
-    </Footer>
-}

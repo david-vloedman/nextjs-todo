@@ -10,6 +10,7 @@ export default function Nav(){
 
     const UL = styled.ul`
         list-style: none;
+        border-right: 1px solid black;
     `;
 
 
@@ -32,7 +33,7 @@ export default function Nav(){
             </li>
 
             <li>
-                <Link href="/posts/todo">
+                <Link href="/tools/todo">
                     <a>To Do App</a>
                 </Link>
             </li>
