@@ -16,7 +16,7 @@ export default function Nav(){
             </li>
 
             <li>
-                <Link href="/tools/todo">
+                <Link href="/todo-list/todo-list">
                     <a>To Do App</a>
                 </Link>
             </li>
