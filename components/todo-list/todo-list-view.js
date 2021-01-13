@@ -4,13 +4,13 @@ import NewTodoForm from './new-todo-form'
 export default function TodoListView({todoList}){
     return (
         <div>
-            <TodoListDiv todoList={todoList} />
+            <ListView todoList={todoList} />
             <NewTodoForm todoList={todoList} />
         </div>
     )
 }
 
-const TodoListDiv = observer(({todoList}) => (
+const ListView = observer(({todoList}) => (
     <div>
         <ul>
             {todoList.todos.map(todo => 

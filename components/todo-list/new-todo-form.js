@@ -1,30 +1,33 @@
-import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 import Todo from "../../lib/todo-list/todo";
 import styled from "styled-components";
+import { observable, action } from "mobx";
 
-export default function AddNewTodoForm({ todoList }) {
-  return <FormElement todoList={todoList} />;
+export default function AddNewTodoForm({ todoList, formState }) {
+  const form = observable({
+    title: "",
+    details: "",
+    updateProperty: action((key, value) => (form[key] = value)),
+  });
+
+  return <FormElement todoList={todoList} formState={form} />;
 }
 
-let todo = new Todo();
-
-const FormElement = observer(({ todoList }) => {
-  const updateProperty = action((key, value) => {
-    todo[key] = value;
-  });
-
-  const onChange = action((event) => {
-    updateProperty(event.target.name, event.target.value);
-  });
+const FormElement = observer(({ todoList, formState }) => {
+  const onChange = (event) => {
+    formState.updateProperty(event.target.name, event.target.value);
+  };
 
   const onSubmit = (event) => {
-    event.preventDefault();
+    const todo = new Todo();
+    todo.title = formState.title;
+    todo.details = formState.details;
     todoList.addTodoItem(todo);
+    event.preventDefault();
   };
 
   return (
-    <FormContainer>
+    <div>
       <fieldset>
         <legend>Create new task</legend>
         <form>
@@ -33,19 +36,27 @@ const FormElement = observer(({ todoList }) => {
             <input
               type="text"
               name="title"
-              onChange={action((e) => onChange(e))}
+              value={formState.title}
+              onChange={(e) => onChange(e)}
             />
           </label>
           <br />
           <label>
             Details <br />
-            <input type="text" name="details" onChange={onChange} />
+            <input
+              type="text"
+              name="details"
+              value={formState.details}
+              onChange={onChange}
+            />
           </label>
           <br />
-          <SubmitButton type="Submit" onClick={onSubmit} value="Add Task" />
+          <button type="submit" onClick={onSubmit}>
+            Add Task
+          </button>
         </form>
       </fieldset>
-    </FormContainer>
+    </div>
   );
 });
 
@@ -54,9 +65,9 @@ const FormContainer = styled.div`
   margin: 5px;
 `;
 
-const SubmitButton = styled.input`
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
+const SubmitButton = styled.button`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
