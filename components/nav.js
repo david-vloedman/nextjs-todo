@@ -31,5 +31,6 @@ const NavStyle = styled.nav`
 
 const UL = styled.ul`
     list-style: none;
+    margin-top: 8px;
     border-right: 1px solid black;
 `;

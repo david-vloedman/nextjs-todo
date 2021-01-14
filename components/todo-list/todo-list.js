@@ -2,20 +2,20 @@ import { observer } from "mobx-react-lite";
 import styled from "styled-components";
 import NewTodoForm from "./new-todo-form";
 
-export default function TodoListView({ todoList }) {
+export default function TodoAppView({ todoList }) {
   return (
-    <TodoContainer>
+    <TodoCompContainer>
       <ListContainer>
         <TodoListElement>
           <ListView todoList={todoList} />
         </TodoListElement>
       </ListContainer>
       <CountersContainer>
-        <UnfinishedCount todoList={todoList} />
-        <FinishedCount todoList={todoList} />
+        <UnfinishedCountView todoList={todoList} />
+        <FinishedCountView todoList={todoList} />
       </CountersContainer>
       <NewTodoForm todoList={todoList} />
-    </TodoContainer>
+    </TodoCompContainer>
   );
 }
 
@@ -38,14 +38,16 @@ const TodoView = observer(({ todo }) => (
   </TodoLI>
 ));
 
-const UnfinishedCount = observer(({ todoList }) => (
+const UnfinishedCountView = observer(({ todoList }) => (
   <CountContainer>
     Uncompleted tasks: {todoList.unfinishedTodoCount}
   </CountContainer>
 ));
 
-const FinishedCount = observer(({ todoList }) => (
-  <CountContainer>Completed tasks: {todoList.finishedTodoCount}</CountContainer>
+const FinishedCountView = observer(({ todoList }) => (
+  <CountContainer>
+    Completed tasks: {todoList.finishedTodoCount}
+    </CountContainer>
 ));
 
 const TodoLI = styled.li`
@@ -58,7 +60,9 @@ const ListContainer = styled.div`
   margin: 5px;
 `;
 
-const TodoContainer = styled.div``;
+const TodoCompContainer = styled.div`
+
+`;
 
 const TodoListElement = styled.ul`
   list-style: none;
