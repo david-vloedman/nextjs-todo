@@ -3,13 +3,19 @@ import Todo from "../../lib/todo-list/todo";
 import styled from "styled-components";
 import { observable, action } from "mobx";
 
-export default function AddNewTodoForm({ todoList, formState }) {
+
+// look for examples of other forms using mobx
+export default function AddNewTodoForm({ todoList }) {
   const form = observable({
     title: "",
     details: "",
     createdBy: "",
     due: "",
     updateProperty: action((key, value) => (form[key] = value)),
+    addToList: action(() => {
+      const todo = new Todo(form.title, form.details, form.due, form.createdBy);
+      todoList.addTodoItem(todo);
+    })
   });
 
   return (
@@ -18,25 +24,22 @@ export default function AddNewTodoForm({ todoList, formState }) {
     </FormContainer>
   );
 }
-// todo: this is sloppy, it shouldn't need both the todolist and formstate.
-// come up with a better solution for forms w/ mobx
-const FormElement = observer(({ todoList, formState }) => {
+
+const FormElement = observer(({ formState }) => {
   const onChange = (event) => {
     formState.updateProperty(event.target.name, event.target.value);
   };
 
   const onSubmit = (event) => {
-    const todo = new Todo();
-    todo.title = formState.title;
-    todo.details = formState.details;
-    todoList.addTodoItem(todo);
     event.preventDefault();
+    formState.addToList();
   };
 
   return (
     <fieldset>
       <legend>Create new task</legend>
       <form>
+        <InputGroup>
         <label>
           Title <br />
           <input
@@ -46,7 +49,9 @@ const FormElement = observer(({ todoList, formState }) => {
             onChange={(e) => onChange(e)}
           />
         </label>
+        </InputGroup>
         <br />
+        <InputGroup>
         <label>
           Details <br />
           <input
@@ -56,7 +61,10 @@ const FormElement = observer(({ todoList, formState }) => {
             onChange={(e) => onChange(e)}
           />
         </label>
+        </InputGroup>
         <br/>
+
+        <InputGroup>
         <label>
           Created By <br />
           <input
@@ -66,8 +74,9 @@ const FormElement = observer(({ todoList, formState }) => {
             onChange={(e) => onChange(e)}
           />
         </label>
-
+        </InputGroup>
         <br/>
+        <InputGroup>
         <label>
           Due By <br />
           <input
@@ -77,9 +86,9 @@ const FormElement = observer(({ todoList, formState }) => {
             onChange={(e) => onChange(e)}
           />
         </label>
-
+        </InputGroup>
         <br />
-        <SubmitButton type="submit" onClick={onSubmit}>
+        <SubmitButton type="submit" onClick={onSubmit} onSubmit={onSubmit}>
           Add Task
         </SubmitButton>
       </form>
@@ -97,4 +106,8 @@ const SubmitButton = styled.button`
   margin-right: auto;
   margin-top: 5px;
   margin-bottom: 5px;
+`;
+
+const InputGroup = styled.div`
+  margin: 2px;
 `;
