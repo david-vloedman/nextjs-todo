@@ -17,7 +17,7 @@ export default function AddNewTodoForm({ todoList, formState }) {
   );
 }
 // todo: this is sloppy, it shouldn't need both the todolist and formstate.
-// come up with a better solution for forms
+// come up with a better solution for forms w/ mobx
 const FormElement = observer(({ todoList, formState }) => {
   const onChange = (event) => {
     formState.updateProperty(event.target.name, event.target.value);
