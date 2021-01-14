@@ -37,8 +37,8 @@ const FormElement = observer(({ formState }) => {
   };
 
   return (
-    <fieldset>
-      <legend>Create new task</legend>
+    <div>
+      <h2>Create new task</h2>
       <form noValidate>
         <div>
           <TextField
@@ -76,6 +76,7 @@ const FormElement = observer(({ formState }) => {
             type="date"
             name="due"
             label="Due By"
+            variant="outlined"
             value={formState.due}
             onChange={(e) => onChange(e)}
             InputLabelProps={{
@@ -90,7 +91,7 @@ const FormElement = observer(({ formState }) => {
         </Button>
         </div>
       </form>
-    </fieldset>
+    </div>
   );
 });
 
