@@ -12,7 +12,7 @@ export default function TodoListView({ todoList }) {
       </ListContainer>
       <CountersContainer>
         <UnfinishedCount todoList={todoList} />
-        <FinishedCount todoList={todoList}/>
+        <FinishedCount todoList={todoList} />
       </CountersContainer>
       <NewTodoForm todoList={todoList} />
     </TodoContainer>
@@ -38,17 +38,15 @@ const TodoView = observer(({ todo }) => (
   </TodoLI>
 ));
 
-const UnfinishedCount = observer(({todoList}) => (
-    <CountContainer>
-    Uncompleted tasks:{' '}{todoList.unfinishedTodoCount}
-    </CountContainer>
-))
+const UnfinishedCount = observer(({ todoList }) => (
+  <CountContainer>
+    Uncompleted tasks: {todoList.unfinishedTodoCount}
+  </CountContainer>
+));
 
-const FinishedCount = observer(({todoList}) => (
-    <CountContainer>
-    Completed tasks:{' '}{todoList.finishedTodoCount}
-    </CountContainer>
-))
+const FinishedCount = observer(({ todoList }) => (
+  <CountContainer>Completed tasks: {todoList.finishedTodoCount}</CountContainer>
+));
 
 const TodoLI = styled.li`
   padding: 3px;
@@ -67,13 +65,13 @@ const TodoListElement = styled.ul`
 `;
 
 const CountContainer = styled.div`
-    margin: 5px;
-    padding: 3px;
-    border-top: 1px solid #333;
+  margin: 5px;
+  padding: 3px;
+  border-top: 1px solid #333;
 `;
 
 const CountersContainer = styled.div`
-    margin: 5px;
-    padding: 3px;
-    max-width: 300px;
+  margin: 5px;
+  padding: 3px;
+  max-width: 300px;
 `;
