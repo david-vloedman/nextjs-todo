@@ -46,7 +46,7 @@ const UnfinishedCount = observer(({todoList}) => (
 
 const FinishedCount = observer(({todoList}) => (
     <CountContainer>
-    Completed tasks:{' '}{todoList.finishedTOdoCount}
+    Completed tasks:{' '}{todoList.finishedTodoCount}
     </CountContainer>
 ))
 
