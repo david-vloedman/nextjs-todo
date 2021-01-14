@@ -9,7 +9,7 @@ const todoObj = new Todo();
 export default function TodoListPage() {
   return (
     <Layout>
-      <TodoListView todoList={todoListObj} todo={todoObj} />
+      <TodoListView todoList={todoListObj} />
     </Layout>
   );
 }

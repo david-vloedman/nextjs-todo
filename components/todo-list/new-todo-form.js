@@ -7,6 +7,8 @@ export default function AddNewTodoForm({ todoList, formState }) {
   const form = observable({
     title: "",
     details: "",
+    createdBy: "",
+    due: "",
     updateProperty: action((key, value) => (form[key] = value)),
   });
 
@@ -17,7 +19,7 @@ export default function AddNewTodoForm({ todoList, formState }) {
   );
 }
 // todo: this is sloppy, it shouldn't need both the todolist and formstate.
-// come up with a better solution for forms
+// come up with a better solution for forms w/ mobx
 const FormElement = observer(({ todoList, formState }) => {
   const onChange = (event) => {
     formState.updateProperty(event.target.name, event.target.value);
@@ -54,6 +56,28 @@ const FormElement = observer(({ todoList, formState }) => {
             onChange={(e) => onChange(e)}
           />
         </label>
+        <br/>
+        <label>
+          Created By <br />
+          <input
+            type="text"
+            name="createdBy"
+            value={formState.createdBy}
+            onChange={(e) => onChange(e)}
+          />
+        </label>
+
+        <br/>
+        <label>
+          Due By <br />
+          <input
+            type="text"
+            name="due"
+            value={formState.due}
+            onChange={(e) => onChange(e)}
+          />
+        </label>
+
         <br />
         <SubmitButton type="submit" onClick={onSubmit}>
           Add Task
