@@ -4,16 +4,23 @@ import styled from "styled-components";
 import { observable, action } from "mobx";
 
 export default function AddNewTodoForm({ todoList, formState }) {
+
   const form = observable({
     title: "",
     details: "",
     updateProperty: action((key, value) => (form[key] = value)),
   });
 
-  return <FormElement todoList={todoList} formState={form} />;
+  return (
+    <FormContainer>
+      <FormElement todoList={todoList} formState={form} />
+    </FormContainer>
+  );
 }
-
+// todo: this is sloppy, it shouldn't need both the todolist and formstate.
+// come up with a better solution for forms
 const FormElement = observer(({ todoList, formState }) => {
+
   const onChange = (event) => {
     formState.updateProperty(event.target.name, event.target.value);
   };
@@ -27,36 +34,36 @@ const FormElement = observer(({ todoList, formState }) => {
   };
 
   return (
-    <div>
-      <fieldset>
-        <legend>Create new task</legend>
-        <form>
-          <label>
-            Title <br />
-            <input
-              type="text"
-              name="title"
-              value={formState.title}
-              onChange={(e) => onChange(e)}
-            />
-          </label>
-          <br />
-          <label>
-            Details <br />
-            <input
-              type="text"
-              name="details"
-              value={formState.details}
-              onChange={onChange}
-            />
-          </label>
-          <br />
-          <button type="submit" onClick={onSubmit}>
-            Add Task
-          </button>
-        </form>
-      </fieldset>
-    </div>
+    <fieldset>
+      <legend>Create new task</legend>
+      <form>
+        <label>
+          Title <br />
+          
+          <input
+            type="text"
+            name="title"
+            value={formState.title}
+            onChange={(e) => onChange(e)}
+          />
+
+        </label>
+        <br />
+        <label>
+          Details <br />
+          <input
+            type="text"
+            name="details"
+            value={formState.details}
+            onChange={(e) => onChange(e)}
+          />
+        </label>
+        <br />
+        <SubmitButton type="submit" onClick={onSubmit}>
+          Add Task
+        </SubmitButton>
+      </form>
+    </fieldset>
   );
 });
 
