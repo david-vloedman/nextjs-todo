@@ -1,15 +1,22 @@
 import { observer } from "mobx-react-lite";
+import { observable, action } from "mobx";
 import Todo from "../../lib/todo-list/todo";
 import styled from "styled-components";
-import { observable, action } from "mobx";
+import Button from "@material-ui/core/Button"
+import TextField from "@material-ui/core/TextField"
 
-export default function AddNewTodoForm({ todoList, formState }) {
+// look for examples of other forms using mobx
+export default function AddNewTodoForm({ todoList }) {
   const form = observable({
     title: "",
     details: "",
     createdBy: "",
     due: "",
     updateProperty: action((key, value) => (form[key] = value)),
+    addToList: action(() => {
+      const todo = new Todo(form.title, form.details, form.due, form.createdBy);
+      todoList.addTodoItem(todo);
+    })
   });
 
   return (
@@ -18,70 +25,70 @@ export default function AddNewTodoForm({ todoList, formState }) {
     </FormContainer>
   );
 }
-// todo: this is sloppy, it shouldn't need both the todolist and formstate.
-// come up with a better solution for forms w/ mobx
-const FormElement = observer(({ todoList, formState }) => {
+
+const FormElement = observer(({ formState }) => {
   const onChange = (event) => {
     formState.updateProperty(event.target.name, event.target.value);
   };
 
   const onSubmit = (event) => {
-    const todo = new Todo();
-    todo.title = formState.title;
-    todo.details = formState.details;
-    todoList.addTodoItem(todo);
     event.preventDefault();
+    formState.addToList();
   };
 
   return (
     <fieldset>
       <legend>Create new task</legend>
-      <form>
-        <label>
-          Title <br />
-          <input
-            type="text"
+      <form noValidate>
+        <div>
+          <TextField
+            id="title"
             name="title"
+            label="Title"
+            variant="outlined"
             value={formState.title}
             onChange={(e) => onChange(e)}
           />
-        </label>
+       </div>
         <br />
-        <label>
-          Details <br />
-          <input
-            type="text"
+        <div>
+          <TextField
             name="details"
+            variant="outlined"
+            label="Details"
             value={formState.details}
             onChange={(e) => onChange(e)}
           />
-        </label>
+        </div>
         <br/>
-        <label>
-          Created By <br />
-          <input
-            type="text"
+        <div>
+          <TextField
             name="createdBy"
+            variant="outlined"
+            label="Created By"
             value={formState.createdBy}
             onChange={(e) => onChange(e)}
           />
-        </label>
-
+        </div>
         <br/>
-        <label>
-          Due By <br />
-          <input
-            type="text"
+        <div>
+          <TextField
+            type="date"
             name="due"
+            label="Due By"
             value={formState.due}
             onChange={(e) => onChange(e)}
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
-        </label>
-
+      </div>
         <br />
-        <SubmitButton type="submit" onClick={onSubmit}>
+        <div>
+        <Button variant="contained" color="primary" type="submit" onClick={onSubmit} onSubmit={onSubmit}>
           Add Task
-        </SubmitButton>
+        </Button>
+        </div>
       </form>
     </fieldset>
   );
@@ -97,4 +104,8 @@ const SubmitButton = styled.button`
   margin-right: auto;
   margin-top: 5px;
   margin-bottom: 5px;
+`;
+
+const InputGroup = styled.div`
+  margin: 2px;
 `;
