@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { observable, action } from "mobx";
 
 export default function AddNewTodoForm({ todoList, formState }) {
-
   const form = observable({
     title: "",
     details: "",
@@ -20,7 +19,6 @@ export default function AddNewTodoForm({ todoList, formState }) {
 // todo: this is sloppy, it shouldn't need both the todolist and formstate.
 // come up with a better solution for forms
 const FormElement = observer(({ todoList, formState }) => {
-
   const onChange = (event) => {
     formState.updateProperty(event.target.name, event.target.value);
   };
@@ -39,14 +37,12 @@ const FormElement = observer(({ todoList, formState }) => {
       <form>
         <label>
           Title <br />
-          
           <input
             type="text"
             name="title"
             value={formState.title}
             onChange={(e) => onChange(e)}
           />
-
         </label>
         <br />
         <label>

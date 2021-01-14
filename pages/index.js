@@ -1,24 +1,24 @@
-import Layout from '../components/layout'
-import Link from 'next/link'
-import { getSortedPostsData } from '../lib/posts'
+import Layout from "../components/layout";
+import Link from "next/link";
+import { getSortedPostsData } from "../lib/posts";
 
-export async function getStaticProps(){
-  const allPostsData = getSortedPostsData()
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
 
-  return{
-    props:{
-      allPostsData
-    }
-  }
+  return {
+    props: {
+      allPostsData,
+    },
+  };
 }
 
 export default function Home({ allPostsData }) {
   return (
-  <Layout>
+    <Layout>
       <section>
         <h2>Pre-rendered Blog Posts</h2>
         <ul>
-          {allPostsData.map(({id, date, title}) => (
+          {allPostsData.map(({ id, date, title }) => (
             <li key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
@@ -27,6 +27,6 @@ export default function Home({ allPostsData }) {
           ))}
         </ul>
       </section>
-    </Layout>    
-  )
+    </Layout>
+  );
 }
