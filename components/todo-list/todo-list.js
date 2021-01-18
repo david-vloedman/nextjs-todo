@@ -1,25 +1,35 @@
 import { observer } from "mobx-react-lite";
 import styled from "styled-components";
-import NewTodoForm from "./new-todo-form";
+import AddTaskForm from "./new-todo-form";
+import Typography from "@material-ui/core/Typography"
+import Button from "@material-ui/core/Button"
 
 export default function TodoAppView({ todoList }) {
   return (
-    <TodoCompContainer>
+    <ComponentContainer>
+
       <ListContainer>
-        <TodoListElement>
-          <ListView todoList={todoList} />
-        </TodoListElement>
+        <TodoListUL>
+          <TodoListView todoList={todoList} />
+        </TodoListUL>
       </ListContainer>
+
       <CountersContainer>
         <UnfinishedCountView todoList={todoList} />
         <FinishedCountView todoList={todoList} />
       </CountersContainer>
-      <NewTodoForm todoList={todoList} />
-    </TodoCompContainer>
+
+      <AddTaskForm todoList={todoList} />
+
+      <TodoDetailsContainer>
+          {todoList.todos.map((todo) =>
+           todo.showDetails ? <TodoDetailView todo={todo} /> : null)}
+      </TodoDetailsContainer>
+    </ComponentContainer>
   );
 }
 
-const ListView = observer(({ todoList }) => (
+const TodoListView = observer(({ todoList }) => (
   <>
     {todoList.todos.map((todo) => (
       <TodoView todo={todo} key={todo.id} />
@@ -34,9 +44,24 @@ const TodoView = observer(({ todo }) => (
       checked={todo.finished}
       onChange={() => todo.toggle()}
     />{" "}
-    {todo.title} - Details: {todo.details}
+    {todo.title} 
+    <Button
+     variant="contained"
+     color="primary" 
+     type="button">Details</Button>
   </TodoLI>
 ));
+
+const TodoDetailView = observer(({todo}) => (
+  <div>
+    <Typography variant="h5" component="h4" gutterBottom>{ todo.title }</Typography>
+    <Typography variant="subtitle1" gutterBottom>Created by: {todo.createdBy}</Typography>
+    <Typography variant="subtitle1" gutterBottom>Due by: {todo.due}</Typography>
+    <Typography variant="body1">{todo.details}</Typography>
+  </div>
+))
+
+
 
 const UnfinishedCountView = observer(({ todoList }) => (
   <CountContainer>
@@ -47,7 +72,7 @@ const UnfinishedCountView = observer(({ todoList }) => (
 const FinishedCountView = observer(({ todoList }) => (
   <CountContainer>
     Completed tasks: {todoList.finishedTodoCount}
-    </CountContainer>
+  </CountContainer>
 ));
 
 const TodoLI = styled.li`
@@ -60,11 +85,11 @@ const ListContainer = styled.div`
   margin: 5px;
 `;
 
-const TodoCompContainer = styled.div`
+const ComponentContainer = styled.div`
 
 `;
 
-const TodoListElement = styled.ul`
+const TodoListUL = styled.ul`
   list-style: none;
 `;
 
@@ -79,3 +104,5 @@ const CountersContainer = styled.div`
   padding: 3px;
   max-width: 300px;
 `;
+
+const TodoDetailsContainer = styled.div``;
