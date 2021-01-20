@@ -45,39 +45,52 @@ const FormElement = observer(({ formState }) => {
   };
 
   return (
-    <Grid>
-    <form autocomplete="off" noValidate>
-      <div>
-        <TextField
-          id="title"
-          name="title"
-          label="Title"
-          variant="outlined"
-          value={formState.title}
-          onChange={(e) => onChange(e)}
-        />
-      </div>
-      <br />
-      <div>
-        <TextField
-          name="details"
-          variant="outlined"
-          label="Details"
-          multiline
-          rows={4}
-          value={formState.details}
-          onChange={(e) => onChange(e)}
-        />
-      </div>
-      <br />
-      <div>
-        <TextField
-          name="createdBy"
-          variant="outlined"
-          label="Created By"
-          value={formState.createdBy}
-          onChange={(e) => onChange(e)}
-        />
+    <div>
+      <h2>Create new task</h2>
+      <form noValidate>
+        <div>
+          <TextField
+            id="title"
+            name="title"
+            label="Title"
+            variant="outlined"
+            value={formState.title}
+            onChange={(e) => onChange(e)}
+          />
+       </div>
+        <br />
+        <div>
+          <TextField
+            name="details"
+            variant="outlined"
+            label="Details"
+            value={formState.details}
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <br/>
+        <div>
+          <TextField
+            name="createdBy"
+            variant="outlined"
+            label="Created By"
+            value={formState.createdBy}
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <br/>
+        <div>
+          <TextField
+            type="date"
+            name="due"
+            label="Due By"
+            variant="outlined"
+            value={formState.due}
+            onChange={(e) => onChange(e)}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
       </div>
       <br />
       <div>
@@ -104,9 +117,9 @@ const FormElement = observer(({ formState }) => {
         >
           Add Task
         </Button>
-      </SubmitContainer>
-    </form>
-    </Grid>
+        </SubmitContainer>
+      </form>
+    </div>
   );
 });
 
