@@ -4,7 +4,6 @@ import Todo from "../../lib/todo-list/todo";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid"
 import { Typography } from "@material-ui/core";
 
 // look for examples of other forms using mobx
@@ -91,20 +90,6 @@ const FormElement = observer(({ formState }) => {
               shrink: true,
             }}
           />
-      </div>
-      <br />
-      <div>
-        <TextField
-          type="date"
-          name="due"
-          label="Due By"
-          variant="outlined"
-          value={formState.due}
-          onChange={(e) => onChange(e)}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
       </div>
       <br />
       <SubmitContainer>

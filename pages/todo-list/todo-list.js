@@ -1,16 +1,14 @@
-import Layout from "../../components/layout";
-import TodoAppView from "../../components/todo-list/todo-list";
-import TodoList from "../../lib/todo-list/todo-list";
-import Container from "@material-ui/core/Container"
+import TodoAppView from "../../components/todo-list/todo-list"
+import Layout from "../../components/layout"
+import TodoList from "../../lib/todo-list/todo-list"
 
-const testTodoList = new TodoList();
 
-export default function TodoListPage({ todoList }) {
+export default function TodoListPage(){
+  const testList = new TodoList();
+  
   return (
     <Layout>
-      <Container>
-      <TodoAppView todoList={ todoList || testTodoList } />
-      </Container>
+    <TodoAppView todoList={testList}/>
     </Layout>
-  );
+  )
 }
