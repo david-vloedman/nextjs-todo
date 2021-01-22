@@ -2,6 +2,8 @@ import Layout from "../components/layout";
 import Link from "next/link";
 import { getSortedPostsData } from "../lib/posts";
 
+
+
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
 
