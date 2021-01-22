@@ -7,10 +7,9 @@ handler.use(middleware);
 
 handler.get(async (req, res) => {
     // const doc = await req.db.collection("task").findOne();
-    res.status(200).json({
-        title: "test",
-        details: "details"
-    });
+    const doc = await req.db.collection("task").findOne(req.taskId || null);
+    console.log(doc);
+    res.status(200).end(JSON.stringify(doc));
     
 });
 
